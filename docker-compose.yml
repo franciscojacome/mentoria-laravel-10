@@ -13,8 +13,9 @@ services:
             - sistema-getao-network
     # nginx
     nginx:
+        platform: linux/amd64
         container_name: servidor-nginx
-        image: nginx:alpine
+        image: nginx:latest
         restart: unless-stopped
         ports:
             - "8989:80"
@@ -27,6 +28,7 @@ services:
     mysql:
         container_name: banco-mysql
         image: mysql:5.7.22
+        platform: linux/amd64
         restart: unless-stopped
         environment:
             MYSQL_DATABASE: ${DB_DATABASE}
@@ -42,6 +44,7 @@ services:
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
+        platform: linux/amd64
         container_name: phpmyadmin
         links:
             - mysql
